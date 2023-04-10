@@ -27,6 +27,7 @@ class UsuarioApiController extends Controller {
                                                 'ruc',
                                                 'razonsocial',
                                                 'celular',
+                                                'email',
                                                 'fechacrea',
                                                 'created_at')
                                 ->with('detalleaccion:id,usuario_id,nombretipo')
@@ -58,6 +59,7 @@ class UsuarioApiController extends Controller {
                                                 'ruc',
                                                 'razonsocial',
                                                 'celular',
+                                                'email',
                                                 'fechacrea',
                                                 'created_at')
                                 ->with('detalleaccion:id,usuario_id,nombretipo')
