@@ -28,6 +28,10 @@ class UsuarioApiController extends Controller {
                                                 'razonsocial',
                                                 'celular',
                                                 'email',
+                                                'ind_politica_de_datos',
+                                                'ind_publicidad',
+                                                'ind_migrar_tercero',
+                                                'contrasenia',
                                                 'fechacrea',
                                                 'created_at')
                                 ->with('detalleaccion:id,usuario_id,nombretipo')
@@ -60,6 +64,10 @@ class UsuarioApiController extends Controller {
                                                 'razonsocial',
                                                 'celular',
                                                 'email',
+                                                'ind_politica_de_datos',
+                                                'ind_publicidad',
+                                                'ind_migrar_tercero',
+                                                'contrasenia',
                                                 'fechacrea',
                                                 'created_at')
                                 ->with('detalleaccion:id,usuario_id,nombretipo')
