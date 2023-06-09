@@ -20,9 +20,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('/prueba', 'UsuarioApiController@actionPrueba');
 
-Route::get('/lista-actores', 'UsuarioApiController@actionListarActores')->middleware('auth:api');
+Route::get('/lista-actores', 'UsuarioApiController@actionListarActores');
 Route::get('/lista-actores/tipodocumento/{dniruc}', 'UsuarioApiController@actionListarActoresxDniRuc')->middleware('auth:api');
-
+Route::get('/lista-actores/accion/{vencom}', 'UsuarioApiController@actionListarActoresxvencom')->middleware('auth:api');
 
 
 Route::get('/lista-actores/dni/{dni}', 'UsuarioApiController@actionListarActoresDni')->middleware('auth:api');

@@ -33,9 +33,10 @@ class UsuarioApiController extends Controller {
                                                 'ind_migrar_tercero',
                                                 'contrasenia',
                                                 'fechacrea',
-                                                'created_at')
-                                ->with('detalleaccion:id,usuario_id,nombretipo')
-                                ->whereIn('tipo', ['actores'])
+                                                'created_at',
+                                                'tipo')
+                                ->with('preguntas_y_respuestas:id,usuario_id,pregunta,nombretipo as respuesta')
+                                //->whereIn('tipo', ['actores'])
                                 ->where('activo','=',1)
                                 ->orderBy('created_at', 'desc')
                                 ->get();
@@ -69,9 +70,10 @@ class UsuarioApiController extends Controller {
                                                 'ind_migrar_tercero',
                                                 'contrasenia',
                                                 'fechacrea',
-                                                'created_at')
-                                ->with('detalleaccion:id,usuario_id,nombretipo')
-                                ->whereIn('tipo', ['actores'])
+                                                'created_at',
+                                                'tipo')
+                                ->with('preguntas_y_respuestas:id,usuario_id,pregunta,nombretipo as respuesta')
+                                //->whereIn('tipo', ['actores'])
                                 ->where('activo','=',1)
                                 ->where('nombretipodocumento','=',$dniruc)
                                 ->orderBy('created_at', 'desc')
@@ -94,6 +96,50 @@ class UsuarioApiController extends Controller {
 
     }
 
+
+
+    public function actionListarActoresxvencom($vencom) {
+
+        header('Content-Type: application/json; charset=utf-8');
+        $listausuaria  =        Usuario::select('id',
+                                                'nombretipodocumento as tipo_documento',
+                                                'dni',
+                                                'nombres',
+                                                'apellidos',
+                                                'ruc',
+                                                'razonsocial',
+                                                'celular',
+                                                'email',
+                                                'ind_politica_de_datos',
+                                                'ind_publicidad',
+                                                'ind_migrar_tercero',
+                                                'contrasenia',
+                                                'fechacrea',
+                                                'created_at',
+                                                'tipo')
+                                ->with('preguntas_y_respuestas:id,usuario_id,pregunta,nombretipo as respuesta')
+                                //->whereIn('tipo', ['actores'])
+                                ->where('activo','=',1)
+                                ->where('tipo','=',$vencom)
+                                ->orderBy('created_at', 'desc')
+                                ->get();
+
+        if(count($listausuaria)<=0){
+                return response()->json([
+                    'mensaje' => 'Asociados no encontrado'
+                ], 400); 
+        }
+
+        $responsecode = 200;
+        $header = array (
+            'Content-Type'  => 'application/json; charset=UTF-8',
+            'charset'       => 'utf-8'
+        );
+
+        return response()->json(    $listausuaria, 
+                                    $responsecode, $header, JSON_UNESCAPED_UNICODE);
+
+    }
 
 
 

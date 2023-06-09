@@ -19,7 +19,10 @@ class Usuario extends Model
         return $this->hasMany('App\Detalledocumento', 'usuario_id', 'id');
     }
 
-
+    public function preguntas_y_respuestas()
+    {
+        return $this->hasMany('App\Detalledocumento', 'usuario_id', 'id');
+    }
 
     public function scopeFechaDesde($query,$fechadesde){
         if(trim($fechadesde) != ''){
